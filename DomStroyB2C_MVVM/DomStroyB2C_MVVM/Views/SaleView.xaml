@@ -60,6 +60,7 @@
     </UserControl.Resources>
     <Grid Background="#E5E5E5">
         <Grid.RowDefinitions>
+            <!--first row for txtSearch and blue background-->
             <RowDefinition Height="50"/>
             
             <RowDefinition Height="Auto"/>
