@@ -20,6 +20,10 @@ namespace DomStroyB2C_MVVM.ViewModels
         // A value inherite from MainWindowViewModel
         private MainWindowViewModel mainWindow;
 
+        #endregion
+
+        #region Constructor
+
         /// <summary>
         /// constructor for switching views
         /// </summary>
@@ -27,16 +31,6 @@ namespace DomStroyB2C_MVVM.ViewModels
         {
             this.mainWindow = mainWindow;
             UpdateViewCommand = new UpdateViewCommand(mainWindow);
-        }
-        #endregion
-
-        #region Constructor
-
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        public SaleViewModel()
-        {
             ObjDbAccess = new DBAccess();
             started_shop = GetShop() > 0;
             ProductList = new List<productDTO>();
@@ -53,7 +47,6 @@ namespace DomStroyB2C_MVVM.ViewModels
             GetBasketList();
             SumSomDollar();
         }
-
         #endregion
 
         #region Private Fields
@@ -328,13 +321,13 @@ namespace DomStroyB2C_MVVM.ViewModels
         public void GetBasketList()
         {
             int shop = GetShop();
-            using(DataTable tbShopId = new DataTable())
-            {
-                string queryShopId = "select shopid.shop from shopid inner join staff on shopid.password = staff.password " +
-                    "where staff.password='"+MainWindowViewModel.user_password+"'";
-                ObjDbAccess.readDatathroughAdapter(queryShopId, tbShopId);
-                shop = Convert.ToInt32(tbShopId.Rows[0]["shop"]);
-            }
+            //using(DataTable tbShopId = new DataTable())
+            //{
+            //    string queryShopId = "select shopid.shop from shopid inner join staff on shopid.password = staff.password " +
+            //        "where staff.password='"+MainWindowViewModel.user_password+"'";
+            //    ObjDbAccess.readDatathroughAdapter(queryShopId, tbShopId);
+            //    shop = Convert.ToInt32(tbShopId.Rows[0]["shop"]);
+            //}
             string queryBasket = "select cart.*, product.name, product.producer, product.measurement, product.selling_price, product.currency from cart " +
                 "inner join product on cart.product = product.product_id " +
                 "where cart.shop ='" + shop + "' order by cart.id";
@@ -477,6 +470,10 @@ namespace DomStroyB2C_MVVM.ViewModels
                 if(!string.IsNullOrEmpty(tbSum.Rows[0]["sum(cart.sum)"].ToString()))
                 {
                     SumSom = double.Parse(tbSum.Rows[0]["sum(cart.sum)"].ToString());
+                }
+                else
+                {
+                    SumSom = 0;
                 }
                 tbSum.Clear();
 
@@ -652,9 +649,7 @@ namespace DomStroyB2C_MVVM.ViewModels
                 started_shop = false;
                 GetBasketList();
                 SumSomDollar();
-
             }
-
         }
     }
     #endregion

@@ -116,7 +116,9 @@
 
                     <Grid Grid.Row="0" Grid.Column="0" 
                           Margin="20 0 20 15">
-                        <Button Style="{StaticResource btnMenu}" Command="{Binding UpdateViewCommand}" Click="Button_Click" CommandParameter="Sale">
+                        <Button Style="{StaticResource btnMenu}" 
+                                Command="{Binding UpdateViewCommand}" 
+                                Click="Button_Click" CommandParameter="Sale">
                             <StackPanel>
                                 <Image Source="../Images/menuSell.png" Width="45" Height="45" Margin="0 10 0 0"/>
                                 <TextBlock Text="Sotuv"/>

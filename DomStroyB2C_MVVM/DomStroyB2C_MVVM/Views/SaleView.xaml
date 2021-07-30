@@ -63,12 +63,16 @@
             <!--first row for txtSearch and blue background-->
             <RowDefinition Height="50"/>
             
+            <!--second row for productTable-->
             <RowDefinition Height="Auto"/>
             
+            <!--third row for display sum-->
             <RowDefinition Height="70"/>
             
+            <!--4th row for cartTable-->
             <RowDefinition Height="*"/>
             
+            <!--5th row for buttons-->
             <RowDefinition Height="80"/>
 
         </Grid.RowDefinitions>
@@ -478,7 +482,9 @@
                         </Button>
                     </Grid>
                     <Grid Grid.Column="2" Margin="0 0 20 0">
-                        <Button Style="{StaticResource btnSell}" Command="{Binding UpdateViewCommand}" CommandParameter="ClientOrder">
+                        <Button Style="{StaticResource btnSell}" 
+                                Command="{Binding UpdateViewCommand}" 
+                                CommandParameter="ClientOrder">
                             <StackPanel Orientation="Horizontal" Width="230">
                                 <Image Source="../Images/SellBook.png" Height="33" Width="33" Margin="25 0 0 0"/>
                                 <TextBlock Text="Buyurtma olish" FontSize="18px" Foreground="#FFFFFF"

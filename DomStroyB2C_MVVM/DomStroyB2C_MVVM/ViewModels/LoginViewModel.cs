@@ -1,12 +1,11 @@
-﻿using DomStroyB2C_MVVM.Commands;
+﻿
+using DomStroyB2C_MVVM.Commands;
 using DomStroyB2C_MVVM.Models;
-
 using DomStroyB2C_MVVM.Views.Loading;
 using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
 using System;
 using System.Data;
-
 using System.Net.Http;
 using System.Text;
 using System.Threading;
@@ -14,13 +13,10 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media.Effects;
 
-
-
 namespace DomStroyB2C_MVVM.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
-
         /// <summary>
         /// Private ViewModal and View
         /// </summary>
@@ -75,7 +71,6 @@ namespace DomStroyB2C_MVVM.ViewModels
 
 
         #endregion 
-
 
         #region Loadin animation
         // An effect that sets effect to the usercontrol ui
@@ -198,7 +193,6 @@ namespace DomStroyB2C_MVVM.ViewModels
 
         #region Helper methods
 
-
         /// <summary>
         /// The function it gets data from api
         /// </summary>
@@ -206,9 +200,7 @@ namespace DomStroyB2C_MVVM.ViewModels
         /// <returns></returns>
         public async Task<string> GetObject(string url)
         {
-
             using (HttpClient request = new HttpClient())
-
             {
                 var content = await request.GetStringAsync(url);
                 return content;
@@ -226,17 +218,14 @@ namespace DomStroyB2C_MVVM.ViewModels
             var response = string.Empty;
 
             using (var client = new HttpClient())
-
             {
                 try
                 {
                     using (HttpResponseMessage result = await client.PostAsync(url, content))
                     {
-
                         if (result.IsSuccessStatusCode)
                         {
                             using (HttpContent Rcontent = result.Content)
-
                             {
                                 response = await Rcontent.ReadAsStringAsync();
                             }
@@ -256,8 +245,5 @@ namespace DomStroyB2C_MVVM.ViewModels
         }
 
         #endregion
-
-
-
     }
 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using DomStroyB2C_MVVM.Commands;
 
 namespace DomStroyB2C_MVVM.ViewModels
@@ -12,14 +7,12 @@ namespace DomStroyB2C_MVVM.ViewModels
     {
         public ICommand UpdateViewCommand { get; set; }
 
-        private MainWindowViewModel mainWindow;
+        public MainWindowViewModel mainWindow;
 
         public ClientOrderViewModel(MainWindowViewModel mainWindow)
         {
             this.mainWindow = mainWindow;
             UpdateViewCommand = new UpdateViewCommand(mainWindow);
         }
-                
-
     }
 }

@@ -13,7 +13,7 @@ namespace DomStroyB2C_MVVM.Views
         public SaleView()
         {
             InitializeComponent();
-            this.DataContext = new SaleViewModel();
+            //this.DataContext = new SaleViewModel();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
