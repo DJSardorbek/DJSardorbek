@@ -103,6 +103,10 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="wpftoolkit.extended, Version=1.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Downloads\wpftoolkit.extended.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -113,6 +117,7 @@
     <Compile Include="Commands\UpdateViewCommand.cs" />
     <Compile Include="DBAccess.cs" />
     <Compile Include="Models\cartDTO.cs" />
+    <Compile Include="Models\clientDTO.cs" />
     <Compile Include="Models\productDTO.cs" />
     <Compile Include="Models\employeeDTO.cs" />
     <Compile Include="PasswordHelper.cs" />
@@ -150,9 +155,6 @@
     </Compile>
     <Compile Include="Views\ChashDeskView.xaml.cs">
       <DependentUpon>ChashDeskView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ClientAddView.xaml.cs">
-      <DependentUpon>ClientAddView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ClientOrderView.xaml.cs">
       <DependentUpon>ClientOrderView.xaml</DependentUpon>
@@ -204,6 +206,9 @@
     </Compile>
     <Compile Include="Views\ModalViews\BasketView.xaml.cs">
       <DependentUpon>BasketView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ModalViews\CliantAddView.xaml.cs">
+      <DependentUpon>CliantAddView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NewProductMovementView.xaml.cs">
       <DependentUpon>NewProductMovementView.xaml</DependentUpon>
@@ -302,10 +307,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ClientAddView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\ClientOrderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -371,6 +372,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ModalViews\BasketView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ModalViews\CliantAddView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

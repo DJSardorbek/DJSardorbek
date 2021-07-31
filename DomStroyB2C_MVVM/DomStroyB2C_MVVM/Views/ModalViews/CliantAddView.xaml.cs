@@ -12,16 +12,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace DomStroyB2C_MVVM.Views
+namespace DomStroyB2C_MVVM.Views.ModalViews
 {
     /// <summary>
-    /// Interaction logic for ClientAddView.xaml
+    /// Interaction logic for CliantAddView.xaml
     /// </summary>
-    public partial class ClientAddView : Window
+    public partial class CliantAddView : Window
     {
-        public ClientAddView()
+        public CliantAddView()
         {
             InitializeComponent();
+            txtFirstName.Focus();
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }
