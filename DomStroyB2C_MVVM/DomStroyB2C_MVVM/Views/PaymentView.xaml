@@ -17,7 +17,7 @@
 
         </Style>
         
-        <Style TargetType="{x:Type TextBox}">
+        <Style TargetType="{x:Type TextBox}" x:Key="txtClient">
             <Setter Property="SnapsToDevicePixels" Value="True"/>
             <Setter Property="OverridesDefaultStyle" Value="True"/>
             <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
@@ -25,7 +25,7 @@
             <Setter Property="AllowDrop" Value="True" />
             <Setter Property="CaretBrush" Value="#283654"/>
             <!---->
-            <Setter Property="Width" Value="270"/>
+            <Setter Property="Width" Value="235"/>
             <Setter Property="Height" Value="54"/>
             <Setter Property="VerticalAlignment" Value="Bottom"/>
             <Setter Property="BorderBrush" Value="#6783B8"/>
@@ -68,6 +68,7 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            
         </Style>
 
         <Style TargetType="{x:Type Button}" x:Key="btnClient">
@@ -85,10 +86,14 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#8595B8"/>
-                    <Setter Property="BorderBrush" Value="#8595B8"/>
+                    <Setter Property="Opacity" Value="0.7"/>
+                </Trigger>
+                <Trigger Property="Tag" Value="Valyuta">
+                    <Setter Property="Background" Value="#FFFFEF"/>
+                    
                 </Trigger>
             </Style.Triggers>
+            
         </Style>
 
     </Window.Resources>
@@ -117,7 +122,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Grid Grid.Column="0">
-                        <TextBox Margin="34 0 0 0" Cursor="Hand"/>
+                        <TextBox Style="{StaticResource txtClient}" Margin="34 0 0 0" Cursor="Hand"/>
                     </Grid>
 
                     <Grid Grid.Column="1" Background="#6783B8" Height="54" Margin="0 0 32 0">
@@ -170,7 +175,7 @@
                     Height="40" Margin="47 0 25 0"
                     CornerRadius="3"
                     Background="#4D638C">
-                    <DatePicker Grid.Row="1" Width="282"  Height="35"
+                    <DatePicker Grid.Row="1" Width="138"  Height="35"
                         HorizontalAlignment="Left" Margin="0 10 0 0"
                                 Foreground="White"
                                 >
@@ -182,7 +187,279 @@
 
         <!--Second column for doing payment-->
         <Grid Grid.Column="1" Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <!--first row title and cancel button-->
+            <Grid Grid.Row="0">
+                <!--title-->
+                <TextBlock Text="To'lov oynasi" FontFamily="Segoe UI"
+                           FontSize="40px" Foreground="#4D638C"
+                           FontWeight="SemiBold" VerticalAlignment="Center"
+                           HorizontalAlignment="Center"/>
+                <!--cancel button-->
+                <Button x:Name="btnClose" Click="btnClose_Click" VerticalAlignment="Top"
+                                    Margin="10 24 21 0">
+                    <Image Source="../Images/Close.png" Width="30" Height="30"/>
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Width" Value="35"/>
+                            <Setter Property="Height" Value="35"/>
+                            <Setter Property="Margin" Value="0 15 20 0"/>
+                            <Setter Property="HorizontalAlignment" Value="Right"/>
+                            <Setter Property="BorderBrush" Value="White"/>
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border
+                                        Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}">
+                                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="AntiqueWhite"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Grid> 
             
+            <!--second row for display total shopping sum, and doing payment-->
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                
+                <!--first row for display total_sum-->
+                <Grid Grid.Row="0" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="15"/>
+                        <RowDefinition Height="65"/>
+                    </Grid.RowDefinitions>
+
+                    <!--first row for Valyuta and Harid summasi textblock-->
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="270"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="Valyuta"
+                                   Foreground="#283654" FontSize="12px"
+                                   Margin="72 0 0 0" FontWeight="SemiBold"/>
+
+                        <TextBlock Grid.Column="1" Text="Harid summasi:"
+                                   Foreground="#283654" FontSize="12px"
+                                   Margin="0 0 0 0" FontWeight="SemiBold"
+                                   HorizontalAlignment="Left"/>
+                    </Grid>
+                    
+                    <!--second row for Valyuta and Harid summasi textbox-->
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <Border Width="206" Height="52" Margin="53 0 0 0"
+                            CornerRadius="5 0 0 5" BorderThickness="1"
+                            BorderBrush="#283654">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="56"/>
+                        </Grid.ColumnDefinitions>
+                            <TextBox Text="So'm">
+                        <TextBox.Style>
+                            <Style TargetType="{x:Type TextBox}">
+                                <Setter Property="SnapsToDevicePixels" Value="True" />
+                                <Setter Property="OverridesDefaultStyle" Value="True" />
+                                <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
+                                <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                                <Setter Property="MinWidth" Value="150" />
+                                <Setter Property="IsReadOnly" Value="True"/>
+                                <Setter Property="MinHeight" Value="35" />
+                                <Setter Property="AllowDrop" Value="true" />
+                                <Setter Property="Foreground" Value="#283654"/>
+                                <Setter Property="FontFamily" Value="Segoe UI"/>
+                                <Setter Property="FontSize" Value="20px"/>
+                                <Setter Property="CaretBrush" Value="#A8A0A0"/>
+                                <Setter Property="DockPanel.Dock" Value="Right"/>
+                                <Setter Property="DockPanel.Dock" Value="Left"/>
+                                <Setter Property="Template">
+                                <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type TextBox}">
+
+                                            <Grid>
+                                                <Border x:Name="Border"
+                                                    CornerRadius="5 0 0 5"
+                                                    Padding="18 10 0 5"
+                                                    BorderThickness="0" Background="#FFFFFF" BorderBrush="#283654">
+                                                    <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+
+                                                </Border>
+
+                                                <TextBlock IsHitTestVisible="False"
+                                                    Text="{TemplateBinding Tag}"
+                                                    Padding="80 8 50 5">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="{x:Type TextBlock}">
+                                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                                            <Setter Property="Foreground" Value="#A8A0A0"/>
+                                                            <Setter Property="FontFamily" Value="Segoe UI"/>
+                                                            <Setter Property="FontSize" Value="15px"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}" Value="">
+                                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+
+                                            </Grid>
+
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                        <Button Grid.Column="1" Width="56" Tag="Valyuta" Style="{StaticResource btnClient}">
+                                <Image Source="../Images/changeCurrency.png" Width="19" Height="19"/>
+                            </Button>
+                        </Grid>
+                        
+                    </Border >
+
+                    
+                    <Border CornerRadius="0 5 5 0" BorderThickness="0 1 1 1"
+                            BorderBrush="#283654" Width="333" 
+                            Height="52">
+                        
+                        <TextBlock Text="1 500 000" FontSize="20px"
+                                   FontFamily="Segoe UI" Foreground="#283654"
+                                   VerticalAlignment="Center" Margin="20 0 0 0"/>
+                    </Border>
+                    
+                </StackPanel>
+                </Grid>
+                
+                <!--second row for doint payment-->
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="15"/>
+                        <RowDefinition Height="65"/>
+                    </Grid.RowDefinitions>
+
+                    <!--first row for Valyuta and Harid summasi textblock-->
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="270"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="To'lov turi"
+                                   Foreground="#283654" FontSize="12px"
+                                   Margin="72 0 0 0" FontWeight="SemiBold"/>
+
+                        <TextBlock Grid.Column="1" Text="To'lov summasi:"
+                                   Foreground="#283654" FontSize="12px"
+                                   Margin="0 0 0 0" FontWeight="SemiBold"
+                                   HorizontalAlignment="Left"/>
+                    </Grid>
+
+                    <!--second row for Valyuta and Harid summasi textbox-->
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <Border Width="206" Height="52" Margin="53 0 0 0"
+                            CornerRadius="5 0 0 5" BorderThickness="1"
+                            BorderBrush="#283654">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="56"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox Text="So'm">
+                                    <TextBox.Style>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="SnapsToDevicePixels" Value="True" />
+                                            <Setter Property="OverridesDefaultStyle" Value="True" />
+                                            <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
+                                            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                                            <Setter Property="MinWidth" Value="150" />
+                                            <Setter Property="IsReadOnly" Value="True"/>
+                                            <Setter Property="MinHeight" Value="35" />
+                                            <Setter Property="AllowDrop" Value="true" />
+                                            <Setter Property="Foreground" Value="#283654"/>
+                                            <Setter Property="FontFamily" Value="Segoe UI"/>
+                                            <Setter Property="FontSize" Value="20px"/>
+                                            <Setter Property="CaretBrush" Value="#A8A0A0"/>
+                                            <Setter Property="DockPanel.Dock" Value="Right"/>
+                                            <Setter Property="DockPanel.Dock" Value="Left"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type TextBox}">
+
+                                                        <Grid>
+                                                            <Border x:Name="Border"
+                                                    CornerRadius="5 0 0 5"
+                                                    Padding="18 10 0 5"
+                                                    BorderThickness="0" Background="#FFFFFF" BorderBrush="#283654">
+                                                                <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+
+                                                            </Border>
+
+                                                            <TextBlock IsHitTestVisible="False"
+                                                    Text="{TemplateBinding Tag}"
+                                                    Padding="80 8 50 5">
+                                                                <TextBlock.Style>
+                                                                    <Style TargetType="{x:Type TextBlock}">
+                                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                                        <Setter Property="Foreground" Value="#A8A0A0"/>
+                                                                        <Setter Property="FontFamily" Value="Segoe UI"/>
+                                                                        <Setter Property="FontSize" Value="15px"/>
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}" Value="">
+                                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </TextBlock.Style>
+                                                            </TextBlock>
+
+                                                        </Grid>
+
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </TextBox.Style>
+                                </TextBox>
+                                <Button Grid.Column="1" Width="56" Tag="Valyuta" Style="{StaticResource btnClient}">
+                                    <Image Source="../Images/changeCurrency.png" Width="19" Height="19"/>
+                                </Button>
+                            </Grid>
+
+                        </Border >
+
+
+                        <Border CornerRadius="0 5 5 0" BorderThickness="0 1 1 1"
+                            BorderBrush="#283654" Width="333" 
+                            Height="52">
+
+                            <Grid>
+                                
+                            </Grid>
+                        </Border>
+
+                    </StackPanel>
+                </Grid>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

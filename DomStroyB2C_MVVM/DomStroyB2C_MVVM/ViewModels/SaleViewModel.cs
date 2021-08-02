@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Windows;
 using DomStroyB2C_MVVM.Views.ModalViews;
 using MySql.Data.MySqlClient;
+using DomStroyB2C_MVVM.ViewModels.ModalViewModels;
 
 namespace DomStroyB2C_MVVM.ViewModels
 {
@@ -40,6 +41,7 @@ namespace DomStroyB2C_MVVM.ViewModels
             deleteCartCommand = new RelayCommand(DeleteCart);
             updateCartProductCommand = new RelayCommand(ChangeCartProduct);
             cancelShopCommand = new RelayCommand(CancelShop);
+            moveOrderCommand = new RelayCommand(AddOrder);
             TbProduct = new DataTable();
             TbBasket = new DataTable();
             ProductGridVisibility = Visibility.Hidden;
@@ -205,11 +207,11 @@ namespace DomStroyB2C_MVVM.ViewModels
         }
 
 
-        private RelayCommand show;
+        private RelayCommand moveOrderCommand;
 
-        public RelayCommand Show
+        public RelayCommand MoveOrderCommand
         {
-            get { return show; }
+            get { return moveOrderCommand; }
         }
 
 
@@ -386,7 +388,10 @@ namespace DomStroyB2C_MVVM.ViewModels
                 string queryShopId = "select shopid.shop from shopid inner join staff on shopid.password = staff.password " +
                     "where staff.password='"+MainWindowViewModel.user_password+"'";
                 ObjDbAccess.readDatathroughAdapter(queryShopId, tbShopId);
-                shop = Convert.ToInt32(tbShopId.Rows[0]["shop"]);
+                if (tbShopId.Rows.Count > 0)
+                    shop = Convert.ToInt32(tbShopId.Rows[0]["shop"]);
+                else
+                    shop = 0;
             }
             return shop;
         }
@@ -398,8 +403,8 @@ namespace DomStroyB2C_MVVM.ViewModels
             {
                 // Creating new shop
                 MySqlCommand cmdCreate = new MySqlCommand("insert into shop (seller, client, card, transfer, cash_sum, cash_dollar, loan_sum, loan_dollar, " +
-                    "discount_sum, discount_dollar, traded_at, status_server, status_payment, queue, debt, book) " +
-                    "values('"+MainWindowViewModel.user_id+"', 1, 0, 0, 0, 0, 0, 0, 0, 0, '"+DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss")+"', 0, 0, 0, 0, 0)");
+                    "discount_sum, discount_dollar, traded_at, status_server, status_payment, queue, debt, book, total_sum, total_dollar) " +
+                    "values('"+MainWindowViewModel.user_id+"', 1, 0, 0, 0, 0, 0, 0, 0, 0, '"+DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss")+"', 0, 0, 0, 0, 0, 0, 0)");
                 ObjDbAccess.executeQuery(cmdCreate);
                 cmdCreate.Dispose();
                 
@@ -650,6 +655,29 @@ namespace DomStroyB2C_MVVM.ViewModels
                 GetBasketList();
                 SumSomDollar();
             }
+        }
+
+        /// <summary>
+        /// The function to move client to order list
+        /// </summary>
+        public void AddOrder()
+        {
+            int shop = GetShop();
+            if (shop != 0 && BasketList.Count > 0)
+            {
+                ComentView commentView = new ComentView();
+                commentView.DataContext = new ComentViewModel(shop, SumSom, SumDollar,commentView);
+                commentView.ShowDialog();
+
+                if (GetShop() == 0)
+                {
+                    started_shop = false;
+                    GetBasketList();
+                    SumSomDollar();
+                }
+            }
+            else
+                return;
         }
     }
     #endregion

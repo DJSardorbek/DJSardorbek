@@ -120,6 +120,7 @@
     <Compile Include="Models\clientDTO.cs" />
     <Compile Include="Models\productDTO.cs" />
     <Compile Include="Models\employeeDTO.cs" />
+    <Compile Include="Models\queueDTO.cs" />
     <Compile Include="PasswordHelper.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CashDeskViewModel.cs" />
@@ -136,10 +137,12 @@
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\MissedProductsViewModel.cs" />
     <Compile Include="ViewModels\ModalViewModels\BasketViewModel.cs" />
+    <Compile Include="ViewModels\ModalViewModels\ComentViewModel.cs" />
     <Compile Include="ViewModels\OrdersViewModel.cs" />
     <Compile Include="ViewModels\ProductMovementViewModel.cs" />
     <Compile Include="ViewModels\ProductResidueViewModel.cs" />
     <Compile Include="ViewModels\ProductReturnViewModel.cs" />
+    <Compile Include="ViewModels\QueueNavbatlarViewModel.cs" />
     <Compile Include="ViewModels\QueueViewModel.cs" />
     <Compile Include="ViewModels\RecieveFakturaViewModel.cs" />
     <Compile Include="ViewModels\ReportViewModel.cs" />
@@ -209,6 +212,9 @@
     </Compile>
     <Compile Include="Views\ModalViews\CliantAddView.xaml.cs">
       <DependentUpon>CliantAddView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ModalViews\ComentView.xaml.cs">
+      <DependentUpon>ComentView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NewProductMovementView.xaml.cs">
       <DependentUpon>NewProductMovementView.xaml</DependentUpon>
@@ -376,6 +382,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ModalViews\CliantAddView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ModalViews\ComentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -684,6 +694,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Views\Loading\loading.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\changeCurrency.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets')" />

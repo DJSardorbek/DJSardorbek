@@ -115,6 +115,14 @@ namespace DomStroyB2C_MVVM.ViewModels
         // The Sign in function to enter the application
         public void SignInAsync()
         {
+            #region No internet
+            //MainWindowViewModel.user_password = Password;
+            //MainWindowViewModel.user_id = Employee.data.id;
+            //mainWindow.SelectedViewModel = new MainViewModel(mainWindow, Window);
+            //mainWindow.GridVisibility = true;
+            #endregion
+
+            #region with internet
             try
             {
                 //The url for post user password
@@ -162,15 +170,14 @@ namespace DomStroyB2C_MVVM.ViewModels
                                 // If this staff is already inserted, We update his information
                                 if (tbStaff.Rows.Count == 1)
                                 {
-                                    MySqlCommand cmdUpdate = new MySqlCommand("update staff set id='" + Employee.data.id + "', first_name='" + Employee.data.first_name + "', " +
+                                    MySqlCommand cmdUpdate = new MySqlCommand("update staff set first_name='" + Employee.data.first_name + "', " +
                                                                 "token='" + Employee.token + "', role='" + Employee.data.role + "'");
                                     ObjDbContext.executeQuery(cmdUpdate);
                                     cmdUpdate.Dispose();
                                 }
-                                //}
 
                                 MainWindowViewModel.user_password = Password;
-                                //// user_id = Employee.data.id;
+                                MainWindowViewModel.user_id = Employee.data.id;
                                 mainWindow.SelectedViewModel = new MainViewModel(mainWindow, Window);
                                 mainWindow.GridVisibility = true;
                                 //LoginVisibility = false;
@@ -188,6 +195,7 @@ namespace DomStroyB2C_MVVM.ViewModels
             {
                 System.Windows.MessageBox.Show(ex.Message);
             }
+            #endregion
         }
         #endregion
 

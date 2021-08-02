@@ -506,7 +506,7 @@
 
                     <Grid Grid.Column="4">
                         <Button Style="{StaticResource btnSell}"
-                                Command="{Binding Show}">
+                                Command="{Binding MoveOrderCommand}">
                             <StackPanel Orientation="Horizontal" Width="230">
                                 <Image Source="../Images/SellQueue.png" Height="33" Width="33" Margin="25 0 0 0"/>
                                 <TextBlock Text="Navbatga olish" FontSize="18px" Foreground="#FFFFFF"

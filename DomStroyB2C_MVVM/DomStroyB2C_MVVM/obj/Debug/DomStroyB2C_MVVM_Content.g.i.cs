@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("views/loading/loading.gif")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/changecurrency.png")]
 
 
