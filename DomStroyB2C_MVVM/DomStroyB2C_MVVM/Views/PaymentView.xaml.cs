@@ -22,6 +22,7 @@ namespace DomStroyB2C_MVVM.Views
         public PaymentView()
         {
             InitializeComponent();
+            comboCurrency.SelectedIndex = 1;
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -41,6 +42,33 @@ namespace DomStroyB2C_MVVM.Views
             {
                 Height = 700;
                 Top += 75;
+                return;
+            }
+        }
+        int i = 0;
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            switch(i)
+            {
+                case 0 : stackNaqd.Visibility = Visibility.Visible; i++; break; 
+                case 1: stackPlastik.Visibility = Visibility.Visible; i++; break; 
+                case 2: stackXR.Visibility = Visibility.Visible; i =0; break;
+            }
+            
+        }
+
+        private void btnChangeCurrency_Click(object sender, RoutedEventArgs e)
+        {
+            if(txtCurrency.Visibility == Visibility.Collapsed)
+            {
+                txtCurrencyType.Text = "Dollar";
+                txtCurrency.Visibility = Visibility.Visible;
+                return;
+            }
+            else
+            {
+                txtCurrencyType.Text = "So'm";
+                txtCurrency.Visibility = Visibility.Collapsed;
                 return;
             }
         }

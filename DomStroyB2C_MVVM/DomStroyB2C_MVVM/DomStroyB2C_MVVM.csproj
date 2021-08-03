@@ -698,6 +698,12 @@
   <ItemGroup>
     <Resource Include="Images\changeCurrency.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\+.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\x.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
